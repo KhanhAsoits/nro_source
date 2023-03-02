@@ -65,7 +65,7 @@ public class Controller implements IMessageHandler {
         try {
             player = _session.player;
             byte cmd = _msg.command;
-//            System.out.println("***************************CMD receive: " + cmd);
+            System.out.println("***************************CMD receive: " + cmd);
             switch (cmd) {
                 case 42:
                     Service.getInstance().regisAccount(_session, _msg);

@@ -1,6 +1,7 @@
 package com.girlkun.services.func;
 
 import com.girlkun.consts.ConstMap;
+import com.girlkun.consts.ItemConst;
 import com.girlkun.models.item.Item;
 import com.girlkun.consts.ConstNpc;
 import com.girlkun.consts.ConstPlayer;
@@ -22,6 +23,8 @@ import com.girlkun.services.PlayerService;
 import com.girlkun.services.TaskService;
 import com.girlkun.services.InventoryServiceNew;
 import com.girlkun.utils.Logger;
+
+import static com.girlkun.consts.ItemConst.GOLD_BAR;
 
 /**
  *
@@ -247,6 +250,11 @@ public class UseItem {
                         case 404: //sách nâng chiêu 3 đệ tử
                         case 759: //sách nâng chiêu 4 đệ tử
                             upSkillPet(pl, item);
+                            break;
+                        case 457:
+                            // dung thoi vang
+                            pl.inventory.gold += pl.inventory.gold + GOLD_BAR < pl.inventory.LIMIT_GOLD ? GOLD_BAR : pl.inventory.LIMIT_GOLD;
+                            Service.getInstance().sendThongBao(pl,"Dùng thỏi vàng thành công.");
                             break;
                     }
                     break;
