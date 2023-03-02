@@ -27,10 +27,8 @@ import com.girlkun.utils.Logger;
 import static com.girlkun.consts.ItemConst.GOLD_BAR;
 
 /**
- *
  * @author 💖 Trần Lại 💖
  * @copyright 💖 GirlkuN 💖
- *
  */
 public class UseItem {
 
@@ -155,15 +153,15 @@ public class UseItem {
                         } else {
                             item = player.inventory.itemsBag.get(index);
                         }
-                        if (item!= null){
-                        msg = new Message(-43);
-                        msg.writer().writeByte(type);
-                        msg.writer().writeByte(where);
-                        msg.writer().writeByte(index);
-                        
-                        msg.writer().writeUTF("Bạn chắc chắn muốn vứt " + item.template.name + "?");
-                        player.sendMessage(msg);
-                        }else{
+                        if (item != null) {
+                            msg = new Message(-43);
+                            msg.writer().writeByte(type);
+                            msg.writer().writeByte(where);
+                            msg.writer().writeByte(index);
+
+                            msg.writer().writeUTF("Bạn chắc chắn muốn vứt " + item.template.name + "?");
+                            player.sendMessage(msg);
+                        } else {
                             Service.getInstance().sendThongBao(player, "Không thể thực hiện");
                         }
                     } else {
@@ -253,8 +251,7 @@ public class UseItem {
                             break;
                         case 457:
                             // dung thoi vang
-                            pl.inventory.gold += pl.inventory.gold + GOLD_BAR < pl.inventory.LIMIT_GOLD ? GOLD_BAR : pl.inventory.LIMIT_GOLD;
-                            Service.getInstance().sendThongBao(pl,"Dùng thỏi vàng thành công.");
+                            useGoldBar(pl, item);
                             break;
                     }
                     break;
@@ -263,6 +260,20 @@ public class UseItem {
         } else {
             Service.getInstance().sendThongBaoOK(pl, "Sức mạnh không đủ yêu cầu");
         }
+    }
+
+    private void useGoldBar(Player pl, Item item) {
+        boolean canPLus = Math.round(pl.inventory.gold + GOLD_BAR) <= Inventory.LIMIT_GOLD;
+
+        if (canPLus) {
+            pl.inventory.addGold(GOLD_BAR);
+            Service.getInstance().sendMoney(pl);
+            InventoryServiceNew.gI().subQuantityItemsBag(pl, item, 1);
+            Service.getInstance().sendThongBao(pl, "Dùng thỏi vàng thành công");
+        }else {
+            Service.getInstance().sendThongBao(pl, "Vàng sau khi dùng vượt quá giới hạn");
+        }
+
     }
 
     private void useItemChangeFlagBag(Player player, Item item) {
