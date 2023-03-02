@@ -1,0 +1,20 @@
+﻿-Gào Thét Trong Tolet Gọi Tên Anh-
+
+Update: boss sau 15 phút tự reset một lần
+
++ Tắt thông báo khu boss
+
++ Thêm nhận 2 tỷ vàng ở quy lão
+
++ Giới hạn 3 tài khoản trên 1 IP 
+
++ Giảm một nửa tiềm năng sức mạnh (để đệ không lỗi chỉ số)
+
++ Tăng tỉ lệ ra kame ở đệ tử
++ Fix lỗi bảo trì bị mất dữ liệu
+
++ Mở thêm map 4 các hành tinh để up sét kích hoạt
+
+__________________________________
+ 
+Chúc anh em chơi game vui vẻ !
